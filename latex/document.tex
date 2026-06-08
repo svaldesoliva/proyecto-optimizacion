@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[Glenn]{fncychap}
+
+\usepackage{amsmath, amssymb, geometry, graphicx, fancyhdr, hyperref, titlesec, titling, tocloft, tcolorbox, booktabs, appendix, listings, xcolor}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}}
+
+
+\geometry{margin=2.5cm}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=1.5cm]{./TeX_files/logo.png}}
+\fancyhead[C]{}
+\fancyhead[R]{\nouppercase{\leftmark}}
+
+\fancyfoot[C]{\thepage}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdftitle={Proyecto Optimización},
+	pdfauthor={Simón Valdés Oliva},
+}
+
+
+
+
+
+
+\begin{document}
+	\title{Proyecto}
+	\author{Simón Valdés, Vicente Díaz\\
+		ING200 - Optimización\\
+		Prof. Jorge Acuña, PhD.\\
+		Universidad Adolfo Ibáñez\\
+		Viña del Mar}
+	\date{\today}
+
+\maketitle
+\newpage
+\tableofcontents
+
+
+\newpage
+
+\chapter{Introducción}
+
+
+
+
+
+
+
+\begin{thebibliography}{9}
+	\bibitem{clases} Acuña, J. (2026)
+	\emph{Clases}
+	
+\end{thebibliography}
+\end{document}
