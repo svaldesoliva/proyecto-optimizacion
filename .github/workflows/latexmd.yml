@@ -1,0 +1,29 @@
+name: Convertir LaTeX a README Markdown
+
+on:
+  push:
+    paths:
+      - 'latex/document.tex'
+
+jobs:
+  convert_and_push:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Instalar Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Convertir LaTeX a README.MD
+        run: pandoc latex/document.tex -f latex -t markdown -s -o latex/README.MD
+
+      - name: Hacer commit y push de los cambios
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: actualizar latex/README.MD desde document.tex"
+          file_pattern: 'latex/README.MD'
