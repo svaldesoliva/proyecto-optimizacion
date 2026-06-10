@@ -3,11 +3,12 @@
 \usepackage[spanish]{babel}
 \usepackage[Glenn]{fncychap}
 
-\usepackage{amsmath, amssymb, geometry, graphicx, fancyhdr, hyperref, titlesec, titling, tocloft, tcolorbox, booktabs, appendix, listings, xcolor}
+\usepackage{amsmath, amssymb, geometry, graphicx, fancyhdr, hyperref, titlesec, titling, tocloft, tcolorbox, booktabs, appendix, listings, xcolor, caption, subcaption}
 
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \renewcommand{\subsectionmark}[1]{\markright{#1}}
 
+%\graphicspath{{../graphs/}}
 
 \geometry{margin=2.5cm}
 \setlength{\parskip}{1em}
@@ -152,12 +153,107 @@
 	
 	$$\max T = \sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k} t_i$$
 	
-	Obteniendo un valor óptimo de 134 horas:
+	Obteniendo un valor óptimo de 134 horas de operaciones:
 	$$T^* = 134$$
 	
+	Pudimos obtener la siguiente información sobre el costo y uso de las operaciones que el modelo eligió como óptimas:
+	
+	\begin{table}[htbp]
+		\centering
+		\caption{Costos y Utilización}
+		\label{tab:resumen_general}
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Indicador} & \textbf{Valor} \\
+			\midrule
+			Total de Operaciones Realizadas & 58 \\
+			Costo Total Asociado & \$97.802.912 \\
+			Utilización Promedio de Pabellones & 53,60\% \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\newpage
+	También, pudimos obtener la distribución de operaciones por día:
+	\begin{table}[htbp]
+		\centering
+		\caption{Distribución Diaria}
+		\label{tab:operaciones_diarias}
+		\begin{tabular}{cc}
+			\toprule
+			\textbf{Día} & \textbf{Cantidad de Operaciones} \\
+			\midrule
+			Día 1 & 11 \\
+			Día 2 & 8 \\
+			Día 3 & 12 \\
+			Día 4 & 10 \\
+			Día 5 & 17 \\
+			\midrule
+			\textbf{Total} & \textbf{58} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Finalmente, pudimos hacer un análisis del tipo de operación, el número de operaciones por tipo y su porcentaje respecto al total, el costo asociado por tipo y el porcentaje del presupuesto que dicho tipo de operación ocupa.
+	\begin{table}[htbp]
+		\centering
+		\caption{Tipos de operaciones}
+		\label{tab:analisis_especialidad}
+		\begin{tabular}{lcrrc}
+			\toprule
+			\textbf{Tipo de Operación} & \textbf{N° Ops.} & \textbf{\% Ops.} & \textbf{Costo Asociado} & \textbf{\% Presup.} \\
+			\midrule
+			Gástrica              & 12 & 20,69\% & \$23.540.589 & 24,07\% \\
+			Traumatológica        & 8  & 13,79\% & \$16.150.372 & 16,51\% \\
+			Ginecológica          & 8  & 13,79\% & \$13.960.515 & 14,27\% \\
+			Vascular              & 2  & 3,45\%  & \$4.600.068  & 4,70\%  \\
+			Dérmica               & 7  & 12,07\% & \$8.210.241  & 8,39\%  \\
+			Urológica             & 2  & 3,45\%  & \$4.510.138  & 4,61\%  \\
+			Oftalmológica         & 11 & 18,97\% & \$14.530.699 & 14,86\% \\
+			Otorrinolaringológica & 8  & 13,79\% & \$12.300.290 & 12,58\% \\
+			\midrule
+			\textbf{Total}        & \textbf{58} & \textbf{100,00\%} & \textbf{\$97.802.912} & \textbf{100,00\%} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\newline
+	A su vez, pudimos graficar el cronograma diario con las asignaciones de operaciones correspondientes.
 	
 	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./TeX_Files/graphs/Cronograma_Dia1.pdf}
+		\caption{Cronograma con asignación de operaciones - Día 1.}
+		\label{fig:cronograma_dia1}
+	\end{figure}
 	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./TeX_Files/graphs/Cronograma_Dia2.pdf}
+		\caption{Cronograma con asignación de operaciones - Día 2.}
+		\label{fig:cronograma_dia2}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./TeX_Files/graphs/Cronograma_Dia3.pdf}
+		\caption{Cronograma con asignación de operaciones - Día 3.}
+		\label{fig:cronograma_dia3}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./TeX_Files/graphs/Cronograma_Dia4.pdf}
+		\caption{Cronograma con asignación de operaciones - Día 4.}
+		\label{fig:cronograma_dia4}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./TeX_Files/graphs/Cronograma_Dia5.pdf}
+		\caption{Cronograma con asignación de operaciones - Día 5.}
+		\label{fig:cronograma_dia5}
+	\end{figure}
+	\clearpage
+	asdsa
 	
 	
 
