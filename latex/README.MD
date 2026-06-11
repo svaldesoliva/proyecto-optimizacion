@@ -6,7 +6,7 @@ author:
   Prof. Jorge Acuña, PhD.\
   Universidad Adolfo Ibáñez\
   Viña del Mar
-date: 2026-06-10
+date: 2026-06-11
 title: Proyecto
 ---
 
@@ -222,7 +222,129 @@ width="80%"}
 5.](./TeX_Files/graphs/Cronograma_Dia5.pdf){#fig:cronograma_dia5
 width="80%"}
 
-asdsa
+## Modelo 2
+
+##### 
+
+Siguiendo con el contexto del problema, desde algunos sectores del
+Ministerio de Salud, se ha planteado la necesidad de cambiar el enfoque
+del problema, ya que, a juicio de algunos expertos, lo ideal sería poder
+usar los pabellones la mayor parte del tiempo en operaciones y no en
+limpiezas. Para esto, decidimos plantear una nueva función objetivo para
+maximizar la suma de las horas asignadas:
+
+$$\max T = \sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k} t_i$$
+
+Resolvimos el modelo, el cuál nos indicó que el óptimo se encuentra en
+152 horas. $$T^* = 152$$ Luego, en base a ese número decidimos ir
+resolviendo modelos de manera secuencial para obtener la mayor cantidad
+de operaciones y los costos óptimos. Para ello, agregamos la
+restricción:
+
+$$\sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k} t_i = 152$$
+
+Y modificamos la función objetivo para maximizar la cantidad total de
+operaciones realizadas:
+
+$$\max Z = \sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k}$$
+
+Al resolver el modelo, nos entrega un valor óptimo de 53 operaciones
+
+$$Z^* = 53$$
+
+Luego, agregamos este valor como restricción, siguiendo la misma lógica
+anterior:
+
+$$\sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k} = 53$$
+
+Finalmente, modificamos la función objetivo para minimizar el costo:
+
+$$\min C = \sum_{i\in I} \sum_{j \in J} \sum_{k \in K} X_{i,j,k} c_i$$
+
+Obteniendo un valor óptimo de \$99.852.714: $$C^* = 99.852.714$$
+
+Además, se obtienen los nuevos cronogramas:
+
+![Cronograma con asignación de operaciones - Día 1 (Modelo
+C).](./TeX_Files/graphs/Pregunta_C/Cronograma_Dia1.pdf){#fig:cronograma_dia1_modelo_C
+width="80%"}
+
+![Cronograma con asignación de operaciones - Día 2 (Modelo
+C).](./TeX_Files/graphs/Pregunta_C/Cronograma_Dia2.pdf){#fig:cronograma_dia2_modelo_C
+width="80%"}
+
+![Cronograma con asignación de operaciones - Día 3 (Modelo
+C).](./TeX_Files/graphs/Pregunta_C/Cronograma_Dia3.pdf){#fig:cronograma_dia3_modelo_C
+width="80%"}
+
+![Cronograma con asignación de operaciones - Día 4 (Modelo
+C).](./TeX_Files/graphs/Pregunta_C/Cronograma_Dia4.pdf){#fig:cronograma_dia4_modelo_C
+width="80%"}
+
+![Cronograma con asignación de operaciones - Día 5 (Modelo
+C).](./TeX_Files/graphs/Pregunta_C/Cronograma_Dia5.pdf){#fig:cronograma_dia5_modelo_C
+width="80%"}
+
+### Comparación
+
+#### Comparativa general {#comparativa-general .unnumbered}
+
+  **Indicador**                **Modelo B**   **Modelo C**
+  --------------------------- -------------- --------------
+  Total operaciones                 58             53
+  Utilización de pabellones       53,60%         60,80%
+  Costo total (\$)              97.802.912     99.852.714
+
+  : Comparativa general de modelos
+
+El modelo C logra una mejor utilización de los pabellones, logrando un
+aumento del 7,2% de utilización (de 53,60% a 60,80%). Es más caro,
+siendo \$2.049.802 mayor que el modelo B. Además, logra 5 operaciones
+menos en total, con 53 versus 58.
+
+#### Operaciones por día {#operaciones-por-día .unnumbered}
+
+   **Día**   **Modelo B**   **Modelo C**
+  --------- -------------- --------------
+      1           11             10
+      2           8              8
+      3           12             12
+      4           10             11
+      5           17             12
+
+  : Operaciones por día
+
+El modelo C distribuye de forma más equitativa y similar las operaciones
+por cada día.
+
+#### Tipos de operaciones {#tipos-de-operaciones .unnumbered}
+
+Acá podemos ver que en el Modelo C no se realiza ninguna operación
+Vascular, mientras que en el B se hace una. Se hacen más
+traumatológicas, un 8,85% más. Se hacen menos en gástrica, un 9,37%
+menos.
+
+Al comparar los cronogramas gráficos, podemos ver que el modelo C toma
+cirugías más largas, a diferencia del B que intenta poner la mayor
+cantidad de cirugías por lo que favorece a las de menor tiempo. Como
+cada cirugía independiente de su tiempo tiene que tener una limpieza de
+1 hora, hacer varias operaciones cortas requiere mucho tiempo de
+limpieza que se "pierde", en cambio, si es una cirugía larga, se
+requiere 1 sola limpieza.
+
+El modelo C termina atendiendo 5 pacientes menos, sin embargo, toma más
+operaciones largas, las cuales por su naturaleza son más graves, por lo
+que estaría priorizando pacientes de gravedad frente a pacientes que
+requieren operaciones menores.
+
+En conclusión, decidimos que el modelo C es el más apropiado para el
+contexto del problema, ya que el país se encuentra en una situación
+crítica. Para agregar y mejorar el modelo, como vimos antes se había
+anulado la operación vascular al optimizar, por lo que se podría
+considerar algunos tipos de operación como más prioritarios al asignarle
+un peso al tipo.
+
+## Sensibilidad
 
 ::: thebibliography
 9 Acuña, J. (2026) *Clases*
