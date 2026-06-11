@@ -36,15 +36,47 @@
 
 
 \begin{document}
-	\title{Proyecto}
-	\author{Simón Valdés, Vicente Díaz\\
-		ING200 - Optimización\\
-		Prof. Jorge Acuña, PhD.\\
-		Universidad Adolfo Ibáñez\\
-		Viña del Mar}
-	\date{\today}
 
-\maketitle
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\includegraphics[width=4cm]{./TeX_files/logo.png}
+
+		\vspace{1.5cm}
+
+		{\Huge\bfseries Proyecto: Optimización del uso del Hospital Regional Villa Zarcillo\par}
+
+		\vspace{1cm}
+
+		\rule{\textwidth}{0.4pt}
+
+		\vspace{0.5cm}
+
+		{\Large ING200 -- Optimización\\[0.3cm]}
+		{\large Prof. Jorge Acuña, PhD.}
+
+		\vspace{0.5cm}
+
+		\rule{\textwidth}{0.4pt}
+
+		\vspace{2cm}
+
+		{\Large
+			\begin{tabular}{c}
+				Simón Valdés Oliva \\[0.3cm]
+				Vicente Díaz
+			\end{tabular}
+		}
+
+		\vfill
+
+		{\large Universidad Adolfo Ibáñez\\[0.2cm]
+		Viña del Mar\\[0.5cm]
+		\today}
+
+	\end{center}
+\end{titlepage}
 \newpage
 \tableofcontents
 
@@ -254,7 +286,7 @@
 	\end{figure}
 	\clearpage
 	
-	\section{Modelo 2}
+	\section{Modelo C}
 	\paragraph{}Siguiendo con el contexto del problema, desde algunos sectores del Ministerio de Salud, se ha planteado la necesidad de cambiar el enfoque del problema, ya que, a juicio de algunos expertos, lo ideal sería poder usar los pabellones la mayor parte del tiempo en operaciones y no en limpiezas.
 	Para esto, decidimos plantear una nueva función objetivo para maximizar la suma de las horas asignadas:
 	
@@ -395,11 +427,80 @@
 	En conclusión, decidimos que el modelo C es el más apropiado para el contexto del problema, ya que el país se encuentra en una situación crítica. Para agregar y mejorar el modelo, como vimos antes se había anulado la operación vascular al optimizar, por lo que se podría considerar algunos tipos de operación como más prioritarios al asignarle un peso al tipo.
 
 	\section{Sensibilidad}
+	\paragraph{}Desde el Ministerio de Hacienda, han indicado que el presupuesto asignado al programa se encuentra en revisión, por lo cual podría reducirse, mantenerse o incrementarse. Para analizar cómo esto afecta al plan de operaciones, resolvimos el modelo base variando el presupuesto.
+
+	\subsection{Resolución con distintos presupuestos}
+	Resolvimos el modelo base con presupuestos que van desde los \$50.000.000 hasta los \$150.000.000, aumentando en \$5.000.000 por cada resolución, lo que nos dio 21 escenarios distintos.
+
+	Para cada nivel de presupuesto, aplicamos la misma resolución secuencial del Modelo B: primero maximizamos la cantidad de operaciones sujeta al nuevo presupuesto, y luego, fijando dicho óptimo como restricción, minimizamos el costo total. Los resultados obtenidos se resumen en la siguiente tabla:
+
+	\begin{table}[htbp]
+		\centering
+		\caption{Resultados por nivel de presupuesto}
+		\label{tab:sensibilidad}
+		\begin{tabular}{lcc}
+			\toprule
+			\textbf{Presupuesto} & \textbf{Operaciones} & \textbf{Costo Mínimo} \\
+			\midrule
+			\$50.000.000  & 35 & \$48.731.673 \\
+			\$55.000.000  & 38 & \$54.041.836 \\
+			\$60.000.000  & 41 & \$59.521.967 \\
+			\$65.000.000  & 43 & \$63.302.096 \\
+			\$70.000.000  & 46 & \$69.532.228 \\
+			\$75.000.000  & 48 & \$73.962.359 \\
+			\$80.000.000  & 50 & \$78.492.424 \\
+			\$85.000.000  & 52 & \$83.182.599 \\
+			\$90.000.000  & 54 & \$87.932.675 \\
+			\$95.000.000  & 56 & \$92.782.814 \\
+			\textbf{\$100.000.000} & \textbf{58} & \textbf{\$97.802.912} \\
+			\$105.000.000 & 60 & \$102.892.976 \\
+			\$110.000.000 & 62 & \$108.453.088 \\
+			\$115.000.000 & 64 & \$114.293.229 \\
+			\$120.000.000 & 65 & \$117.253.275 \\
+			\$125.000.000 & 67 & \$123.223.411 \\
+			\$130.000.000 & 69 & \$129.273.533 \\
+			\$135.000.000 & 70 & \$132.393.546 \\
+			\$140.000.000 & 72 & \$138.903.593 \\
+			\$145.000.000 & 73 & \$142.223.607 \\
+			\$150.000.000 & 75 & \$149.163.724 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\clearpage
+
+	La fila resaltada corresponde al presupuesto original de \$100.000.000. Se puede observar que, a medida que el presupuesto aumenta, la cantidad de operaciones realizadas crece de forma consistente, pasando de 35 operaciones con \$50.000.000 hasta 75 operaciones con \$150.000.000.
+
+	\subsection{Gráfico de sensibilidad}
+	Graficamos las soluciones obtenidas considerando en el eje X la cantidad de operaciones y en el eje Y el costo total incurrido, como se puede observar en la Figura~\ref{fig:sensibilidad}.
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.85\textwidth]{./TeX_Files/graphs/Sensibilidad_Presupuesto.pdf}
+		\caption{Análisis de sensibilidad: cantidad de operaciones vs.\ costo total.}
+		\label{fig:sensibilidad}
+	\end{figure}
+
+	\subsection{Discusión}
+	Del gráfico y la tabla podemos observar que la relación entre la cantidad de operaciones y el costo total es casi lineal. En promedio, por cada \$5.000.000 adicionales de presupuesto se logran realizar aproximadamente 2 operaciones más, lo que indica un costo marginal estable de alrededor de \$2.500.000 por operación adicional. Esto nos indica que, dentro del rango analizado, la eficiencia del gasto se mantiene consistente: no hay retornos decrecientes significativos ni saltos abruptos en la curva.
+
+	Si el presupuesto se redujera a la mitad (\$50.000.000), el modelo aún logra realizar 35 operaciones, lo que representa un 60,3\% de las 58 operaciones originales. Por otro lado, si se dispusiera de un incremento modesto de \$10.000.000 (llegando a \$110.000.000), se podrían realizar 62 operaciones, es decir, 4 más que con el presupuesto actual.
 	
+	\chapter{Conclusión}
+	
+	El presente proyecto abordó el problema de planificación de cirugías electivas para el contingente de salud que visitará el Hospital Regional de Villa Zarcillo durante la semana del 6 de julio, mediante la formulación y resolución de modelos de programación lineal entera.
+	
+	En primer lugar, el modelo base (Modelo B), orientado a maximizar la cantidad de operaciones realizadas sujeto a un presupuesto de \$100.000.000, permitió atender a 58 pacientes con un costo de \$97.802.912 y una utilización promedio de los pabellones de 53,60\%. Este resultado evidenció que, si bien el objetivo principal, maximizar pacientes atendidos, se cumple satisfactoriamente, el uso del tiempo disponible en los pabellones queda lejos de su capacidad máxima, principalmente debido a la fragmentación del tiempo en limpiezas asociadas a operaciones de corta duración.
+	
+	Frente a esto, el Modelo C propuso un enfoque alternativo, maximizando el porcentaje de uso de los pabellones. Esta variante logró elevar la utilización a 60,80\%, priorizando cirugías de mayor duración y, por ende, de mayor complejidad clínica. Sin embargo, este enfoque implicó atender a 5 pacientes menos (53 versus 58) y un costo levemente superior (\$99.852.714), además de eliminar por completo las operaciones de tipo vascular. Al comparar ambos enfoques, se concluyó que el Modelo C resulta más adecuado para el contexto de crisis sanitaria descrito, dado que prioriza a los pacientes con operaciones más graves por sobre la cantidad total de operaciones, aunque se identificó como oportunidad de mejora la incorporación de ponderadores por tipo de operación, de manera de evitar la exclusión completa de alguna especialidad.
+	
+	Por otra parte, el análisis de sensibilidad sobre el presupuesto, realizado para el Modelo B en un rango de \$50.000.000 a \$150.000.000, mostró una relación prácticamente lineal entre el presupuesto disponible y la cantidad de operaciones realizadas, con un costo marginal estable cercano a \$2.500.000 por operación adicional. Esto indica que, dentro del rango estudiado, no existen retornos decrecientes ni umbrales críticos: cualquier variación en el presupuesto asignado se traduce de manera proporcional en la cantidad de pacientes que pueden ser atendidos, sin que la restricción de tiempo disponible en los pabellones llegue a ser el factor limitante.
+	
+	En síntesis, el uso de herramientas de optimización permitió no solo determinar una planificación factible y eficiente para el contingente de salud, sino también comparar distintos criterios de priorización (cantidad de pacientes versus uso de la infraestructura) y cuantificar el impacto de decisiones presupuestarias externas sobre la capacidad de respuesta del sistema. Como trabajo futuro, se sugiere explorar modelos que incorporen explícitamente la gravedad o urgencia de cada operación como parámetro de ponderación, así como evaluar escenarios con disponibilidad variable de pabellones a lo largo de la semana.
+
 
 \begin{thebibliography}{9}
-	\bibitem{clases} Acuña, J. (2026)
-	\emph{Clases}
-	
+	\bibitem{clases} Acuña, J., Ph.D. (2026).
+	\emph{Apuntes de clases, ING200 Optimización}.
+	Primer semestre 2026. Universidad Adolfo Ibáñez, Viña del Mar, Chile.
 \end{thebibliography}
 \end{document}
