@@ -14,11 +14,13 @@ Prof. Jorge Acuña, PhD.
   --------------------
    Simón Valdés Oliva
       Vicente Díaz
+    Giovanni Beretta
+    Fabiana Sanchez
   --------------------
 
 Universidad Adolfo Ibáñez\
 Viña del Mar\
-2026-06-11
+2026-06-12
 :::
 :::
 
